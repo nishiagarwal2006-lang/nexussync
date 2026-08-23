@@ -1,6 +1,6 @@
 /**
  * NexusSync AI - Landing Page Logic
- * Handles landing page interactions and transitions
+ * Handles landing page interactions and fast transitions
  */
 
 class LandingPage {
@@ -26,13 +26,13 @@ class LandingPage {
     const elements = document.querySelectorAll('.hero-content > *');
     elements.forEach((element, index) => {
       element.style.opacity = '0';
-      element.style.transform = 'translateY(30px)';
+      element.style.transform = 'translateY(20px)';
       
       setTimeout(() => {
-        element.style.transition = 'all 0.8s ease-out';
+        element.style.transition = 'all 0.5s ease-out';
         element.style.opacity = '1';
         element.style.transform = 'translateY(0)';
-      }, index * 200);
+      }, index * 100);
     });
   }
 
@@ -41,26 +41,20 @@ class LandingPage {
    */
   initializeFeatureCards() {
     const cards = document.querySelectorAll('.feature-card');
-    cards.forEach((card, index) => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(30px)';
-      
-      // Intersection Observer for scroll animations
+    if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            setTimeout(() => {
-              card.style.transition = 'all 0.6s ease-out';
-              card.style.opacity = '1';
-              card.style.transform = 'translateY(0)';
-            }, index * 150);
-            observer.unobserve(card);
+            entry.target.style.transition = 'all 0.4s ease-out';
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.2 });
+      }, { threshold: 0.1 });
       
-      observer.observe(card);
-    });
+      cards.forEach(card => observer.observe(card));
+    }
   }
 
   /**
@@ -68,23 +62,23 @@ class LandingPage {
    */
   initializeScrollAnimations() {
     const scrollElements = document.querySelectorAll('.features-section');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in-up');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    scrollElements.forEach(element => observer.observe(element));
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in-up');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      scrollElements.forEach(element => observer.observe(element));
+    }
   }
 }
 
 /**
- * Force the window (and any main scroll containers) to the very top.
- * Temporarily disables CSS smooth-scrolling so the jump is instantaneous.
+ * Force the window to scroll to top instantly
  */
 function forceScrollTop() {
   const html = document.documentElement;
@@ -92,63 +86,48 @@ function forceScrollTop() {
 
   html.style.scrollBehavior = 'auto';
 
-  // Classic + modern APIs
   window.scrollTo(0, 0);
   window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   document.documentElement.scrollTop = 0;
-  document.body.scrollTop = 0;               // Safari / older WebKit
+  document.body.scrollTop = 0;
 
-  // Dashboard internal scroller (if present)
   const content = document.querySelector('.dashboard-content');
   if (content) content.scrollTop = 0;
 
-  // Restore whatever the page had before
   html.style.scrollBehavior = previous || '';
 }
 
 /**
- * Enter dashboard view
+ * Enter dashboard view (Fast 150ms transition)
  */
 function enterDashboard() {
   const landingPage = document.getElementById('landingPage');
-  const dashboard   = document.getElementById('dashboard');
+  const dashboard = document.getElementById('dashboard');
+  if (!landingPage || !dashboard) return;
 
-  // Fade-out landing
-  landingPage.style.opacity    = '0';
-  landingPage.style.transform  = 'scale(0.95)';
-  landingPage.style.transition = 'all 0.5s ease-in-out';
+  landingPage.style.opacity = '0';
+  landingPage.style.transform = 'scale(0.98)';
+  landingPage.style.transition = 'all 0.15s ease-in-out';
 
   setTimeout(() => {
-    // Swap visibility
     landingPage.classList.add('hidden');
     dashboard.classList.remove('hidden');
 
-    // Reset scroll *after* the layout change
     forceScrollTop();
 
-    // Prepare dashboard for fade-in
-    dashboard.style.opacity    = '0';
-    dashboard.style.transform  = 'scale(0.95)';
+    dashboard.style.opacity = '0';
+    dashboard.style.transform = 'scale(0.98)';
 
-    // Extra safety: re-assert scroll on the next two frames
-    // (covers any reflow caused by the scale/opacity styles)
     requestAnimationFrame(() => {
-      forceScrollTop();
-      requestAnimationFrame(forceScrollTop);
+      dashboard.style.transition = 'all 0.15s ease-in-out';
+      dashboard.style.opacity = '1';
+      dashboard.style.transform = 'scale(1)';
     });
 
-    // Fade-in
-    setTimeout(() => {
-      dashboard.style.transition = 'all 0.5s ease-in-out';
-      dashboard.style.opacity    = '1';
-      dashboard.style.transform  = 'scale(1)';
-    }, 50);
-
-    // Initialize dashboard logic
-    if (window.dashboard) {
+    if (window.dashboard && typeof window.dashboard.initialize === 'function') {
       window.dashboard.initialize();
     }
-  }, 500);
+  }, 150);
 }
 
 /**
@@ -156,41 +135,48 @@ function enterDashboard() {
  */
 function backToLanding() {
   const landingPage = document.getElementById('landingPage');
-  const dashboard   = document.getElementById('dashboard');
+  const dashboard = document.getElementById('dashboard');
+  if (!landingPage || !dashboard) return;
 
-  // Fade-out dashboard
-  dashboard.style.opacity    = '0';
-  dashboard.style.transform  = 'scale(0.95)';
-  dashboard.style.transition = 'all 0.5s ease-in-out';
+  dashboard.style.opacity = '0';
+  dashboard.style.transform = 'scale(0.98)';
+  dashboard.style.transition = 'all 0.15s ease-in-out';
 
   setTimeout(() => {
-    // Swap visibility
     dashboard.classList.add('hidden');
     landingPage.classList.remove('hidden');
 
-    // Reset scroll
     forceScrollTop();
 
-    // Prepare landing for fade-in
-    landingPage.style.opacity    = '0';
-    landingPage.style.transform  = 'scale(0.95)';
+    landingPage.style.opacity = '0';
+    landingPage.style.transform = 'scale(0.98)';
 
-    // Extra safety frames
     requestAnimationFrame(() => {
-      forceScrollTop();
-      requestAnimationFrame(forceScrollTop);
+      landingPage.style.transition = 'all 0.15s ease-in-out';
+      landingPage.style.opacity = '1';
+      landingPage.style.transform = 'scale(1)';
     });
-
-    // Fade-in
-    setTimeout(() => {
-      landingPage.style.transition = 'all 0.5s ease-in-out';
-      landingPage.style.opacity    = '1';
-      landingPage.style.transform  = 'scale(1)';
-    }, 50);
-  }, 500);
+  }, 150);
 }
 
-// Initialize landing page when DOM is ready
+/**
+ * Load sample data handler
+ */
+function loadSampleData() {
+  enterDashboard();
+  setTimeout(() => {
+    if (window.sampleData && typeof window.sampleData.loadSampleData === 'function') {
+      window.sampleData.loadSampleData();
+    }
+  }, 200);
+}
+
+// Attach globally
+window.enterDashboard = enterDashboard;
+window.backToLanding = backToLanding;
+window.loadSampleData = loadSampleData;
+
+// Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
   window.landingPage = new LandingPage();
 });

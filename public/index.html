@@ -17,6 +17,27 @@
     <link rel="stylesheet" href="styles/dashboard.css">
     <link rel="stylesheet" href="styles/graph.css">
     <link rel="stylesheet" href="styles/responsive.css">
+    
+    <!-- Instant Navigation Stub (Prevents ReferenceError on fast clicks) -->
+    <script>
+      window.enterDashboard = function() {
+        var l = document.getElementById('landingPage');
+        var d = document.getElementById('dashboard');
+        if (l) l.classList.add('hidden');
+        if (d) d.classList.remove('hidden');
+        window.scrollTo(0, 0);
+      };
+      window.backToLanding = function() {
+        var l = document.getElementById('landingPage');
+        var d = document.getElementById('dashboard');
+        if (d) d.classList.add('hidden');
+        if (l) l.classList.remove('hidden');
+        window.scrollTo(0, 0);
+      };
+      window.loadSampleData = function() {
+        window.enterDashboard();
+      };
+    </script>
 </head>
 <body>
     <!-- Particle Background -->
@@ -354,7 +375,7 @@
     <div id="toastContainer" class="toast-container"></div>
     <div id="modalContainer"></div>
     
-    <!-- Scripts (Socket.IO from CDN) -->
+    <!-- Scripts -->
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
     <script src="js/config.js"></script>
     <script src="js/utils.js"></script>
