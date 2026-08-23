@@ -41,7 +41,7 @@
             <div class="nav-actions">
                 <div class="api-status" id="apiStatus">
                     <span class="pulse-dot"></span>
-                    <span>Groq API</span>
+                    <span id="apiStatusText">Groq API</span>
                 </div>
                 <button class="btn btn-primary" onclick="enterDashboard()">
                     Launch Dashboard
@@ -214,7 +214,6 @@
         <div class="dashboard-content">
             <!-- Left Panel -->
             <div class="left-panel">
-                <!-- Upload Zone -->
                 <div class="upload-section">
                     <h3 class="panel-title">Upload Documents</h3>
                     <div id="dropZone" class="drop-zone">
@@ -227,11 +226,9 @@
                         <input type="file" id="fileInput" multiple accept=".pdf,.txt,.csv,.xlsx,.xls,.docx,.json,.xml,.md" style="display: none;">
                     </div>
                     
-                    <!-- Uploaded Files -->
                     <div id="uploadedFiles" class="uploaded-files"></div>
                 </div>
                 
-                <!-- Agent Activity -->
                 <div class="activity-section">
                     <h3 class="panel-title">
                         Agent Activity
@@ -246,9 +243,7 @@
             
             <!-- Center Panel -->
             <div class="center-panel">
-                <!-- Tab Content -->
                 <div id="tabOverview" class="tab-content active">
-                    <!-- Stats Overview -->
                     <div class="stats-grid" id="statsGrid">
                         <div class="stat-card glass-card">
                             <div class="stat-icon">
@@ -299,33 +294,14 @@
                         </div>
                     </div>
                     
-                    <!-- Extraction Results -->
-                    <div id="extractionResults" class="extraction-results">
-                        <div class="empty-state">
-                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="1.5">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
-                            </svg>
-                            <p>Upload documents or load sample data to begin</p>
-                            <button class="btn btn-outline btn-sm" onclick="loadSampleData()">Load Sample Data</button>
-                        </div>
-                    </div>
+                    <div id="extractionResults" class="extraction-results"></div>
                 </div>
                 
                 <div id="tabExtraction" class="tab-content">
                     <div class="tab-section">
                         <h2 class="section-title">Data Extraction</h2>
                         <p class="section-subtitle">Automatic extraction of entities and attributes from uploaded documents</p>
-                        
-                        <div id="extractionContent" class="extraction-content">
-                            <div class="empty-state">
-                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="1.5">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-                                </svg>
-                                <p>Upload documents to begin extraction</p>
-                                <button class="btn btn-primary btn-sm" onclick="loadSampleData()">Load Sample Data</button>
-                            </div>
-                        </div>
+                        <div id="extractionContent" class="extraction-content"></div>
                     </div>
                 </div>
                 
@@ -344,16 +320,7 @@
                     <div class="tab-section">
                         <h2 class="section-title">Data Validation</h2>
                         <p class="section-subtitle">Validate extracted data against schema templates and business rules</p>
-                        
-                        <div id="validationContent" class="validation-content">
-                            <div class="empty-state">
-                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="1.5">
-                                    <path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-                                </svg>
-                                <p>Process data first to validate</p>
-                                <button class="btn btn-primary btn-sm" onclick="runValidation()">Run Validation</button>
-                            </div>
-                        </div>
+                        <div id="validationContent" class="validation-content"></div>
                     </div>
                 </div>
                 
@@ -361,53 +328,34 @@
                     <div class="tab-section">
                         <h2 class="section-title">Export Data</h2>
                         <p class="section-subtitle">Export processed data in multiple formats</p>
-                        
-                        <div id="exportContent" class="export-content">
-                            <div class="empty-state">
-                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="1.5">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-                                </svg>
-                                <p>No data to export yet</p>
-                                <button class="btn btn-primary btn-sm" onclick="loadSampleData()">Load Sample Data</button>
-                            </div>
-                        </div>
+                        <div id="exportContent" class="export-content"></div>
                     </div>
                 </div>
             </div>
             
             <!-- Right Panel -->
             <div class="right-panel">
-                <!-- Confidence Overview -->
                 <div class="confidence-section">
                     <h3 class="panel-title">Confidence Overview</h3>
                     <div id="confidenceRings" class="confidence-rings"></div>
                 </div>
                 
-                <!-- Quick Actions -->
                 <div class="quick-actions">
                     <h3 class="panel-title">Quick Actions</h3>
-                    <button class="btn btn-primary btn-sm w-full" onclick="runValidation()">
-                        Run Validation
-                    </button>
-                    <button class="btn btn-outline btn-sm w-full" onclick="exportData('json')">
-                        Export JSON
-                    </button>
-                    <button class="btn btn-outline btn-sm w-full" onclick="exportData('csv')">
-                        Export CSV
-                    </button>
+                    <button class="btn btn-primary btn-sm w-full" onclick="runValidation()">Run Validation</button>
+                    <button class="btn btn-outline btn-sm w-full" onclick="exportData('json')">Export JSON</button>
+                    <button class="btn btn-outline btn-sm w-full" onclick="exportData('csv')">Export CSV</button>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- Toast Container -->
+    <!-- Modals & Toasts -->
     <div id="toastContainer" class="toast-container"></div>
-    
-    <!-- Modal Container -->
     <div id="modalContainer"></div>
     
-    <!-- Scripts -->
-    <script src="/socket.io/socket.io.js"></script>
+    <!-- Scripts (Socket.IO from CDN) -->
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
     <script src="js/config.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/types.js"></script>
