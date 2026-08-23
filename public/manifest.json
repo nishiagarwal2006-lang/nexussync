@@ -1,0 +1,19 @@
+{
+  "name": "NexusSync AI",
+  "short_name": "NexusSync",
+  "description": "AI-Powered Product Intelligence for Industrial Commerce",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0F19",
+  "theme_color": "#0B0F19",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["productivity", "business", "utilities"],
+  "lang": "en-US"
+}

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="200" height="50">
+  <defs>
+    <linearGradient id="logoMarkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#38BDF8"/>
+      <stop offset="100%" style="stop-color:#818CF8"/>
+    </linearGradient>
+    <linearGradient id="logoTextGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F9FAFB"/>
+      <stop offset="100%" style="stop-color:#E5E7EB"/>
+    </linearGradient>
+    <filter id="logoGlow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Logo Mark -->
+  <rect x="5" y="5" width="40" height="40" rx="10" fill="url(#logoMarkGrad)" opacity="0.9" filter="url(#logoGlow)"/>
+  <path d="M15 33V17l10 10 10-10v16" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Logo Text -->
+  <text x="55" y="32" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="url(#logoTextGrad)">
+    NexusSync
+  </text>
+  <text x="155" y="32" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#38BDF8">
+    AI
+  </text>
+  
+  <!-- Decorative dots -->
+  <circle cx="48" cy="10" r="2" fill="#34D399">
+    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="48" cy="40" r="2" fill="#FBBF24">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+  </circle>
+</svg>

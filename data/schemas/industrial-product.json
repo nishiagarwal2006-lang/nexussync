@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "name": "industrial_product",
+  "description": "Schema for industrial product data",
+  "required_attributes": [
+    "name",
+    "part_number",
+    "material",
+    "manufacturer",
+    "category"
+  ],
+  "optional_attributes": [
+    "description",
+    "dimensions",
+    "weight",
+    "price",
+    "lead_time",
+    "certifications",
+    "applications",
+    "operating_temperature",
+    "pressure_rating",
+    "load_rating",
+    "speed_rating"
+  ],
+  "data_type_expectations": {
+    "part_number": "string",
+    "weight": "number",
+    "price": "number",
+    "dimensions": "string"
+  },
+  "validation_rules": {
+    "part_number": {
+      "pattern": "^[A-Z0-9\\-_]+$",
+      "min_length": 3,
+      "max_length": 50
+    },
+    "weight": {
+      "min_value": 0.001,
+      "max_value": 100000
+    }
+  }
+}

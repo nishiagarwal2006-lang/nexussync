@@ -1,0 +1,135 @@
+/* ============================================
+   NEXUSSYNC AI - RESPONSIVE STYLES
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .dashboard-content {
+    flex-direction: column;
+  }
+  
+  .left-panel,
+  .right-panel {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+  }
+  
+  .right-panel {
+    border-bottom: none;
+    border-top: 1px solid rgba(56, 189, 248, 0.1);
+  }
+  
+  .header-center {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+  }
+  
+  .dashboard-header {
+    flex-wrap: wrap;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-stats {
+    gap: 1.5rem;
+  }
+  
+  .stat-value {
+    font-size: 1.5rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-header {
+    padding: 0.75rem 1rem;
+  }
+  
+  .tab-btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .tab-btn span {
+    display: none;
+  }
+  
+  .left-panel,
+  .right-panel {
+    padding: 0.75rem;
+  }
+  
+  .center-panel {
+    padding: 1rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .attributes-header,
+  .attribute-row {
+    grid-template-columns: 2fr 2fr 1fr;
+    font-size: 0.75rem;
+  }
+  
+  .attributes-header span:nth-child(4),
+  .attributes-header span:nth-child(5),
+  .attribute-confidence,
+  .attribute-status {
+    display: none;
+  }
+  
+  .confidence-rings {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+  }
+  
+  .hero-stats {
+    gap: 1rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .confidence-rings {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .navbar {
+    padding: 1rem;
+  }
+  
+  .logo-text {
+    font-size: 1.25rem;
+  }
+  
+  .nav-actions .btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "export_id": "export-{timestamp}",
+  "exported_at": "{iso_timestamp}",
+  "product_count": "{count}",
+  "products": [
+    {
+      "id": "{entity_id}",
+      "name": "{product_name}",
+      "entity_type": "product",
+      "validation_status": "{status}",
+      "confidence_score": "{confidence}",
+      "attributes": {
+        "{attribute_key}": {
+          "value": "{attribute_value}",
+          "data_type": "{data_type}",
+          "unit": "{unit}",
+          "confidence_score": "{attr_confidence}",
+          "validation_status": "{attr_status}",
+          "citations": [
+            {
+              "source_type": "{source_type}",
+              "file_name": "{file_name}",
+              "excerpt": "{excerpt}"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "name": "commerce_ready",
+  "description": "Schema for commerce-ready product data",
+  "required_attributes": [
+    "sku",
+    "name",
+    "price",
+    "currency",
+    "availability",
+    "category"
+  ],
+  "optional_attributes": [
+    "description",
+    "images",
+    "shipping_weight",
+    "dimensions",
+    "manufacturer",
+    "warranty",
+    "certifications"
+  ],
+  "data_type_expectations": {
+    "price": "number",
+    "shipping_weight": "number"
+  }
+}

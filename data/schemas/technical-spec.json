@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "name": "technical_spec",
+  "description": "Schema for technical specification data",
+  "required_attributes": [
+    "specification_id",
+    "product_name",
+    "specification_type",
+    "value",
+    "unit"
+  ],
+  "optional_attributes": [
+    "tolerance",
+    "test_method",
+    "standard",
+    "notes"
+  ],
+  "data_type_expectations": {
+    "value": "number",
+    "tolerance": "string"
+  }
+}

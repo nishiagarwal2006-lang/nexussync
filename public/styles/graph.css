@@ -1,0 +1,115 @@
+/* ============================================
+   NEXUSSYNC AI - KNOWLEDGE GRAPH STYLES
+   ============================================ */
+
+.graph-container {
+  position: relative;
+  height: 600px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(17, 24, 39, 0.4);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.graph-toolbar {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.graph-toolbar .btn {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: rgba(17, 24, 39, 0.8);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.graph-toolbar .btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: var(--glow-primary);
+}
+
+.knowledge-graph {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+.knowledge-graph:active {
+  cursor: grabbing;
+}
+
+/* Graph Legend */
+.graph-legend {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(17, 24, 39, 0.8);
+  border-radius: 0.5rem;
+  z-index: 10;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* Graph Stats */
+.graph-stats {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(17, 24, 39, 0.8);
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  z-index: 10;
+}
+
+/* Node Tooltip */
+.node-tooltip {
+  position: absolute;
+  padding: 0.5rem 0.75rem;
+  background: rgba(17, 24, 39, 0.95);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--color-text-primary);
+  pointer-events: none;
+  z-index: 20;
+  box-shadow: var(--shadow-lg);
+}
+
+.node-tooltip .tooltip-title {
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.node-tooltip .tooltip-info {
+  color: var(--color-text-muted);
+}

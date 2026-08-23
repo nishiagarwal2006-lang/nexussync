@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="200" height="50">
+  <defs>
+    <linearGradient id="logoWhiteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF"/>
+      <stop offset="100%" style="stop-color:#E5E7EB"/>
+    </linearGradient>
+    <filter id="logoWhiteGlow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Logo Mark -->
+  <rect x="5" y="5" width="40" height="40" rx="10" fill="white" opacity="0.95" filter="url(#logoWhiteGlow)"/>
+  <path d="M15 33V17l10 10 10-10v16" stroke="#0B0F19" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Logo Text -->
+  <text x="55" y="32" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="url(#logoWhiteGrad)">
+    NexusSync
+  </text>
+  <text x="155" y="32" font-family="Inter, sans-serif" font-size="20" font-weight="800" fill="#FFFFFF">
+    AI
+  </text>
+  
+  <!-- Decorative elements -->
+  <circle cx="48" cy="10" r="2" fill="#34D399">
+    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="48" cy="40" r="2" fill="#38BDF8">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+  </circle>
+</svg>

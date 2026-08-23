@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusSync AI - Industrial Product Intelligence</title>
+    <meta name="description" content="AI-Powered Product Intelligence for Industrial Commerce">
+    <meta name="theme-color" content="#0B0F19">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/landing.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/graph.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+    <!-- Particle Background -->
+    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    
+    <!-- Landing Page -->
+    <div id="landingPage">
+        <nav class="navbar">
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" class="logo-icon">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#38BDF8"/>
+                            <stop offset="100%" style="stop-color:#818CF8"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="5" y="5" width="30" height="30" rx="8" fill="url(#logoGrad)" opacity="0.9"/>
+                    <path d="M13 26V14l7 8 7-8v12" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">NexusSync <span class="gradient-text">AI</span></span>
+            </div>
+            <div class="nav-actions">
+                <div class="api-status" id="apiStatus">
+                    <span class="pulse-dot"></span>
+                    <span>Groq API</span>
+                </div>
+                <button class="btn btn-primary" onclick="enterDashboard()">
+                    Launch Dashboard
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        
+        <div class="hero-section">
+            <div class="hero-content">
+                <div class="badge-pulse">
+                    <span class="live-dot"></span>
+                    Multi-Agent AI System Active
+                </div>
+                <h1 class="hero-title">
+                    <span class="gradient-text neon-text">Industrial Product</span>
+                    <br>
+                    <span class="white-text">Intelligence Engine</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Autonomous multi-agent AI that transforms fragmented product data 
+                    into commerce-ready structured intelligence with traceable citations.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary btn-lg" onclick="enterDashboard()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                        Start Processing
+                    </button>
+                    <button class="btn btn-outline btn-lg" onclick="loadSampleData()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                        Load Sample Data
+                    </button>
+                </div>
+                
+                <!-- Stats -->
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">3</span>
+                        <span class="stat-label">AI Agents</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">6+</span>
+                        <span class="stat-label">File Formats</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">100%</span>
+                        <span class="stat-label">Traceable</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">Real-time</span>
+                        <span class="stat-label">Processing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Features Section -->
+        <div class="features-section" id="features">
+            <h2 class="features-title">
+                <span class="gradient-text">Next-Generation</span> Data Intelligence
+            </h2>
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2">
+                        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                    <h3>Multi-Agent Pipeline</h3>
+                    <p>Autonomous extraction, validation, and enrichment agents working in harmony.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2">
+                        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/>
+                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                    <h3>Knowledge Graphs</h3>
+                    <p>Real-time visualization of product relationships and dependencies.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <h3>Traceable Citations</h3>
+                    <p>Every attribute linked to its source with confidence scoring.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                    <h3>Groq Powered</h3>
+                    <p>Leveraging llama-3.3-70b for enterprise-grade AI processing.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard hidden">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 40 40">
+                    <defs>
+                        <linearGradient id="logoGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#38BDF8"/>
+                            <stop offset="100%" style="stop-color:#818CF8"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="5" y="5" width="30" height="30" rx="8" fill="url(#logoGrad2)" opacity="0.9"/>
+                    <path d="M13 26V14l7 8 7-8v12" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                </svg>
+                <span class="logo-text">NexusSync <span class="gradient-text">AI</span></span>
+            </div>
+            
+            <div class="header-center">
+                <button class="tab-btn active" data-tab="overview">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 3h18v18H3zM3 9h18M9 9v12"/>
+                    </svg>
+                    Overview
+                </button>
+                <button class="tab-btn" data-tab="extraction">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    Extraction
+                </button>
+                <button class="tab-btn" data-tab="graph">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <circle cx="5" cy="5" r="2"/>
+                        <circle cx="19" cy="5" r="2"/>
+                        <circle cx="5" cy="19" r="2"/>
+                        <circle cx="19" cy="19" r="2"/>
+                        <path d="M7 7l3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"/>
+                    </svg>
+                    Knowledge Graph
+                </button>
+                <button class="tab-btn" data-tab="validation">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                    </svg>
+                    Validation
+                </button>
+                <button class="tab-btn" data-tab="export">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    Export
+                </button>
+            </div>
+            
+            <div class="header-right">
+                <button class="btn btn-ghost btn-sm" onclick="backToLanding()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Back
+                </button>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <div class="dashboard-content">
+            <!-- Left Panel -->
+            <div class="left-panel">
+                <!-- Upload Zone -->
+                <div class="upload-section">
+                    <h3 class="panel-title">Upload Documents</h3>
+                    <div id="dropZone" class="drop-zone">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                        </svg>
+                        <p class="drop-text">Drag & Drop Files</p>
+                        <p class="drop-subtext">or click to browse</p>
+                        <p class="drop-formats">PDF, TXT, CSV, XLSX, DOCX, JSON, XML</p>
+                        <input type="file" id="fileInput" multiple accept=".pdf,.txt,.csv,.xlsx,.xls,.docx,.json,.xml,.md" style="display: none;">
+                    </div>
+                    
+                    <!-- Uploaded Files -->
+                    <div id="uploadedFiles" class="uploaded-files"></div>
+                </div>
+                
+                <!-- Agent Activity -->
+                <div class="activity-section">
+                    <h3 class="panel-title">
+                        Agent Activity
+                        <span id="processingIndicator" class="processing-indicator hidden">
+                            <span class="spinner spinner-sm"></span>
+                            Processing
+                        </span>
+                    </h3>
+                    <div id="activityFeed" class="activity-feed"></div>
+                </div>
+            </div>
+            
+            <!-- Center Panel -->
+            <div class="center-panel">
+                <!-- Tab Content -->
+                <div id="tabOverview" class="tab-content active">
+                    <!-- Stats Overview -->
+                    <div class="stats-grid" id="statsGrid">
+                        <div class="stat-card glass-card">
+                            <div class="stat-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="totalEntities">0</span>
+                                <span class="stat-label">Total Entities</span>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <div class="stat-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <path d="M22 4L12 14.01l-3-3"/>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="approvedCount">0</span>
+                                <span class="stat-label">Approved</span>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <div class="stat-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2">
+                                    <path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="needsReviewCount">0</span>
+                                <span class="stat-label">Need Review</span>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-card">
+                            <div class="stat-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2">
+                                    <path d="M18 6L6 18M6 6l12 12"/>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="rejectedCount">0</span>
+                                <span class="stat-label">Rejected</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Extraction Results -->
+                    <div id="extractionResults" class="extraction-results">
+                        <div class="empty-state">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="1.5">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                            </svg>
+                            <p>Upload documents or load sample data to begin</p>
+                            <button class="btn btn-outline btn-sm" onclick="loadSampleData()">Load Sample Data</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="tabExtraction" class="tab-content">
+                    <div class="tab-section">
+                        <h2 class="section-title">Data Extraction</h2>
+                        <p class="section-subtitle">Automatic extraction of entities and attributes from uploaded documents</p>
+                        
+                        <div id="extractionContent" class="extraction-content">
+                            <div class="empty-state">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="1.5">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                                </svg>
+                                <p>Upload documents to begin extraction</p>
+                                <button class="btn btn-primary btn-sm" onclick="loadSampleData()">Load Sample Data</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="tabGraph" class="tab-content">
+                    <div class="graph-container">
+                        <div class="graph-toolbar">
+                            <button class="btn btn-ghost btn-sm" onclick="zoomIn()">+</button>
+                            <button class="btn btn-ghost btn-sm" onclick="zoomOut()">-</button>
+                            <button class="btn btn-ghost btn-sm" onclick="resetGraph()">Reset</button>
+                        </div>
+                        <canvas id="knowledgeGraph" class="knowledge-graph"></canvas>
+                    </div>
+                </div>
+                
+                <div id="tabValidation" class="tab-content">
+                    <div class="tab-section">
+                        <h2 class="section-title">Data Validation</h2>
+                        <p class="section-subtitle">Validate extracted data against schema templates and business rules</p>
+                        
+                        <div id="validationContent" class="validation-content">
+                            <div class="empty-state">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="1.5">
+                                    <path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                                </svg>
+                                <p>Process data first to validate</p>
+                                <button class="btn btn-primary btn-sm" onclick="runValidation()">Run Validation</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="tabExport" class="tab-content">
+                    <div class="tab-section">
+                        <h2 class="section-title">Export Data</h2>
+                        <p class="section-subtitle">Export processed data in multiple formats</p>
+                        
+                        <div id="exportContent" class="export-content">
+                            <div class="empty-state">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#4B5563" stroke-width="1.5">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                                </svg>
+                                <p>No data to export yet</p>
+                                <button class="btn btn-primary btn-sm" onclick="loadSampleData()">Load Sample Data</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Panel -->
+            <div class="right-panel">
+                <!-- Confidence Overview -->
+                <div class="confidence-section">
+                    <h3 class="panel-title">Confidence Overview</h3>
+                    <div id="confidenceRings" class="confidence-rings"></div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3 class="panel-title">Quick Actions</h3>
+                    <button class="btn btn-primary btn-sm w-full" onclick="runValidation()">
+                        Run Validation
+                    </button>
+                    <button class="btn btn-outline btn-sm w-full" onclick="exportData('json')">
+                        Export JSON
+                    </button>
+                    <button class="btn btn-outline btn-sm w-full" onclick="exportData('csv')">
+                        Export CSV
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+    
+    <!-- Modal Container -->
+    <div id="modalContainer"></div>
+    
+    <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/types.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/landing.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/fileUpload.js"></script>
+    <script src="js/agents.js"></script>
+    <script src="js/extraction.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/enrichment.js"></script>
+    <script src="js/knowledgeGraph.js"></script>
+    <script src="js/confidenceRing.js"></script>
+    <script src="js/activityFeed.js"></script>
+    <script src="js/diffViewer.js"></script>
+    <script src="js/exportManager.js"></script>
+    <script src="js/schemaValidator.js"></script>
+    <script src="js/toastSystem.js"></script>
+    <script src="js/modalSystem.js"></script>
+    <script src="js/chartSystem.js"></script>
+    <script src="js/sampleData.js"></script>
+    <script src="js/mockData.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
